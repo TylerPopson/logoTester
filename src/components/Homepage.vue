@@ -1,4 +1,6 @@
 <script setup lang="ts"></script>
 <template>
-    <p class="text-cyan-300">hello</p>
+    <div id="home" class="w-screen h-screen overflow-hidden bg-light-pink">
+
+    </div>
 </template>
