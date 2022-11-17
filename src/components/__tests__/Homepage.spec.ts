@@ -6,6 +6,6 @@ import Homepage from '../Homepage.vue';
 describe('HelloWorld', () => {
   it('renders properly', () => {
     const wrapper = mount(Homepage)
-    expect(wrapper.text()).toContain('hello')
+    expect(wrapper.text()).toContain('Vie')
   })
 })

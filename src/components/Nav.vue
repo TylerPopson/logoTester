@@ -22,8 +22,8 @@
 </script>
 
 <template>
-    <nav class="fixed flex flex-col ml-1 w-20">
-        <button @click="toggle">
+    <nav class="fixed flex flex-col ml-1 w-20 z-50">
+        <button @click="toggle" class="bg-light-blue rounded-full mt-2">
             <Transition name="toggle-icon" mode="out-in">
                     <component :is="Icon"></component>
             </Transition>

@@ -13,6 +13,9 @@ module.exports = {
         'dark-blue': '#89C2D9',
         'light-blue': '#88E8F2',
       },
+      backgroundImage:{
+        'sound': "url('/Sound Wave.svg')",
+      }
     },
   },
   plugins: [],
