@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-    import { ref, shallowRef } from 'vue';
+    import { onMounted, ref, shallowRef } from 'vue';
     import type { Ref } from 'vue';
 
     import Open from "./NavIconOpen.vue";
@@ -9,6 +9,7 @@
     const Icon = shallowRef(Close)
 
     const collapsed: Ref<boolean> = ref(true);
+    const loggedIn: Ref<boolean> = ref(false);
 
     function toggle(){
         collapsed.value = !collapsed.value;
@@ -18,6 +19,10 @@
             Icon.value = Open;
         }
     }
+
+    onMounted(()=>{
+
+    });
 
 </script>
 
@@ -35,13 +40,18 @@
             </RouterLink>
         </Transition>
         <Transition name="slide-fade-dashboard">
-            <RouterLink v-if="!collapsed"  to="/" class="nav-button">
+            <RouterLink v-if="!collapsed"  to="/Dashboard" class="nav-button">
                 <v-icon name="co-ghost" scale="2"></v-icon>
             </RouterLink>
         </Transition>
         <Transition name="slide-fade-login">
-            <RouterLink v-if="!collapsed" to="/" class="nav-button">
+            <RouterLink v-if="!collapsed && !loggedIn" to="/auth" class="nav-button">
                 <v-icon name="co-arrow-thick-to-right" scale="2"></v-icon>
+            </RouterLink>
+        </Transition>
+        <Transition name="slide-fade-login">
+            <RouterLink v-if="!collapsed && loggedIn" to="/auth" class="nav-button">
+                <v-icon name="co-arrow-thick-from-right" scale="2"></v-icon>
             </RouterLink>
         </Transition>
     </nav>

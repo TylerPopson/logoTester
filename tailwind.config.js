@@ -7,11 +7,11 @@ module.exports = {
   theme: {
     extend: {
       colors:{
-        'dark-pink': '#D96690',
-        'med-pink': '#F28DB2',
-        'light-pink': '#F2C9E0',
-        'dark-blue': '#89C2D9',
-        'light-blue': '#88E8F2',
+        'orange': '#FF530D',
+        'light-grey': '#EFEFEF',
+        'dark-blue': '#2B3A42',
+        'med-blue': '#3F5765',
+        'light-blue': '#BDD4DE',
       },
       backgroundImage:{
         'sound': "url('/Sound Wave.svg')",
