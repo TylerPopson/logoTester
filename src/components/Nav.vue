@@ -3,13 +3,20 @@
     import { onMounted, ref, shallowRef } from 'vue';
     import type { Ref } from 'vue';
 
+    import {supabase} from '../supabase';
+    import router from '../router';
+
     import Open from "./NavIconOpen.vue";
     import Close from "./NavIconClose.vue";
+
+    import Auth from './Auth/Auth.vue';
 
     const Icon = shallowRef(Close)
 
     const collapsed: Ref<boolean> = ref(true);
     const loggedIn: Ref<boolean> = ref(false);
+
+    const authActive: Ref<boolean> = ref(false);
 
     function toggle(){
         collapsed.value = !collapsed.value;
@@ -20,14 +27,25 @@
         }
     }
 
-    onMounted(()=>{
+    async function logout(){
+        try {
+            const { error } = await supabase.auth.signOut()
+            if(error) throw error
+            else router.push('/');
+        } catch(error){
+            if(error instanceof Error)
+            alert(error.message)
+        }
+    }
 
+    onMounted(()=>{
+        router.push('/');
     });
 
 </script>
 
 <template>
-    <nav class="fixed flex flex-col ml-1 w-20 z-50">
+    <nav class="fixed flex flex-col ml-1 w-20 z-40">
         <button @click="toggle" class="bg-light-blue rounded-full mt-2">
             <Transition name="toggle-icon" mode="out-in">
                     <component :is="Icon"></component>
@@ -45,9 +63,9 @@
             </RouterLink>
         </Transition>
         <Transition name="slide-fade-login">
-            <RouterLink v-if="!collapsed && !loggedIn" to="/auth" class="nav-button">
+            <Button v-if="!collapsed && !loggedIn" @click="() => {authActive = true}" class="nav-button">
                 <v-icon name="co-arrow-thick-to-right" scale="2"></v-icon>
-            </RouterLink>
+            </Button>
         </Transition>
         <Transition name="slide-fade-login">
             <RouterLink v-if="!collapsed && loggedIn" to="/auth" class="nav-button">
@@ -55,6 +73,9 @@
             </RouterLink>
         </Transition>
     </nav>
+
+    <Auth class="bg-transparent" v-if="authActive"/>
+
 </template>
 
 <style scoped>

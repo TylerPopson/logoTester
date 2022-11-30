@@ -15,6 +15,7 @@ module.exports = {
       },
       backgroundImage:{
         'sound': "url('/Sound Wave.svg')",
+        'vie-logo': "url('/vie-logo.svg')",
       }
     },
   },

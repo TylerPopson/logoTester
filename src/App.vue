@@ -11,7 +11,6 @@
   <header>
       <Navbar/>
   </header>
-
   <RouterView />
 </template>
 
