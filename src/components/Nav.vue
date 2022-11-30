@@ -18,6 +18,18 @@
 
     const authActive: Ref<boolean> = ref(false);
 
+    let modal = document.getElementById("auth-modal")
+
+    function enableModal(){
+        if(modal)
+            modal.style.display = "flex";
+    }
+
+    window.onclick= (event)=>{
+        if(event.target == modal && modal)
+            modal.style.display = "none";
+    }
+
     function toggle(){
         collapsed.value = !collapsed.value;
         if(collapsed.value){
@@ -39,7 +51,7 @@
     }
 
     onMounted(()=>{
-        router.push('/');
+        //router.push('/');
     });
 
 </script>
@@ -63,9 +75,9 @@
             </RouterLink>
         </Transition>
         <Transition name="slide-fade-login">
-            <Button v-if="!collapsed && !loggedIn" @click="() => {authActive = true}" class="nav-button">
+            <button v-if="!collapsed && !loggedIn" @click="enableModal" class="nav-button">
                 <v-icon name="co-arrow-thick-to-right" scale="2"></v-icon>
-            </Button>
+            </button>
         </Transition>
         <Transition name="slide-fade-login">
             <RouterLink v-if="!collapsed && loggedIn" to="/auth" class="nav-button">
@@ -74,11 +86,15 @@
         </Transition>
     </nav>
 
-    <Auth class="bg-transparent" v-if="authActive"/>
+    <Auth id="auth-modal" class="bg-transparent modal"/>
 
 </template>
 
 <style scoped>
+
+    .modal{
+        display: none;
+    }
     
     .slide-fade-home-enter-active,
     .slide-fade-home-leave-active{
