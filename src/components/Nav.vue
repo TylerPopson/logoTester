@@ -2,13 +2,10 @@
 
     import { onMounted, ref, shallowRef } from 'vue';
     import type { Ref } from 'vue';
-
     import {supabase} from '../supabase';
     import router from '../router';
-
     import Open from "./NavIconOpen.vue";
     import Close from "./NavIconClose.vue";
-
     import Auth from './Auth/Auth.vue';
 
     const Icon = shallowRef(Close)
@@ -21,8 +18,12 @@
     let modal = document.getElementById("auth-modal")
 
     function enableModal(){
-        if(modal)
+        console.log("nav click");
+        modal = document.getElementById("auth-modal")
+        if(modal){
+            console.log("displayed?")
             modal.style.display = "flex";
+        }
     }
 
     window.onclick= (event)=>{
@@ -86,8 +87,10 @@
         </Transition>
     </nav>
 
-    <Auth id="auth-modal" class="bg-transparent modal"/>
 
+    <div id="auth-modal" class=" modal absolute top-0 left-0 w-screen h-screen bg-transparent items-center justify-center z-50">
+        <Auth/>
+    </div>
 </template>
 
 <style scoped>
