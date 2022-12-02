@@ -18,17 +18,14 @@
     let modal = document.getElementById("auth-modal")
 
     function enableModal(){
-        console.log("nav click");
-        modal = document.getElementById("auth-modal")
-        if(modal){
-            console.log("displayed?")
-            modal.style.display = "flex";
-        }
+        authActive.value = !authActive.value;
+        console.log("toggle auth: " + authActive.value)
     }
 
     window.onclick= (event)=>{
+        modal = document.getElementById("auth-modal")
         if(event.target == modal && modal)
-            modal.style.display = "none";
+            authActive.value = !authActive.value;
     }
 
     function toggle(){
@@ -88,16 +85,16 @@
     </nav>
 
 
-    <div id="auth-modal" class=" modal absolute top-0 left-0 w-screen h-screen bg-transparent items-center justify-center z-50">
+    <div v-if="authActive" id="auth-modal" class=" modal flex absolute top-0 left-0 w-screen h-screen bg-transparent items-center justify-center z-50">
         <Auth/>
     </div>
 </template>
 
 <style scoped>
 
-    .modal{
+    /* .modal{
         display: none;
-    }
+    } */
     
     .slide-fade-home-enter-active,
     .slide-fade-home-leave-active{
