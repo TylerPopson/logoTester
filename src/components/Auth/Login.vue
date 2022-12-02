@@ -2,6 +2,7 @@
     import { ref } from 'vue';
     import type { Ref } from 'vue';
     import { supabase } from '../../supabase';
+    import router from '../../router';
 
     const loading: Ref<boolean> = ref(false);
     const email: Ref<string> = ref('');
@@ -29,6 +30,7 @@
         } finally {
 
         loading.value = false
+        router.push("/");
 
         }
     }

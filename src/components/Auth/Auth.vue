@@ -2,7 +2,6 @@
 
   import { ref } from 'vue';
   import type { Ref } from 'vue';
-  import { supabase } from '../../supabase';
   import Login from './Login.vue';
   import Signup from './Signup.vue';
 

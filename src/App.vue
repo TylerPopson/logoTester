@@ -1,13 +1,14 @@
 <script setup lang="ts">
   import { RouterLink, RouterView } from 'vue-router';
   import Navbar from "./components/Nav.vue";
-  import { defineStore } from 'pinia';
+  import { defineStore, storeToRefs } from 'pinia';
   import { supabase } from './supabase';
-  import { userSessionStore } from './store/userSessionStore';
+  import { userSessionStore } from './store/userSession';
   import { onMounted, ref, type Ref } from 'vue';
   import type { Session } from '@supabase/gotrue-js';
 
-  const session: Ref<Session | null> = ref(null);
+  const store = userSessionStore();
+  const {session} = storeToRefs(store);
 
   onMounted(() => {
     supabase.auth.getSession().then(({ data }) => {
@@ -16,7 +17,8 @@
 
 
   supabase.auth.onAuthStateChange((_, _session) => {
-    session.value = _session
+    session.value = _session;
+    console.log(session.value);
   })
 
 })

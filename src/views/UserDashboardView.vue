@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import UserDashboard from '../components/UserDashboard.vue'
+import UserDashboard from "../components/UserDashboard.vue";
 </script>
 
 <template>

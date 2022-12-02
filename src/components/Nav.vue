@@ -1,25 +1,25 @@
 <script setup lang="ts">
 
-    import { onMounted, ref, shallowRef } from 'vue';
+    import { ref, shallowRef } from 'vue';
     import type { Ref } from 'vue';
     import {supabase} from '../supabase';
     import router from '../router';
     import Open from "./NavIconOpen.vue";
     import Close from "./NavIconClose.vue";
     import Auth from './Auth/Auth.vue';
+    import { userSessionStore } from '../store/userSession';
+    import { storeToRefs } from 'pinia';
 
-    const Icon = shallowRef(Close)
-
+    const sessionStore  = userSessionStore();
+    const {session} = storeToRefs(sessionStore);
+    const Icon = shallowRef(Close);
     const collapsed: Ref<boolean> = ref(true);
-    const loggedIn: Ref<boolean> = ref(false);
-
     const authActive: Ref<boolean> = ref(false);
-
-    let modal = document.getElementById("auth-modal")
+    let modal = document.getElementById("auth-modal");
 
     function enableModal(){
         authActive.value = !authActive.value;
-        console.log("toggle auth: " + authActive.value)
+        toggle();
     }
 
     window.onclick= (event)=>{
@@ -38,23 +38,21 @@
     }
 
     async function logout(){
+        toggle();
         try {
             const { error } = await supabase.auth.signOut()
             if(error) throw error
             else router.push('/');
         } catch(error){
             if(error instanceof Error)
-            alert(error.message)
+            alert(error.message);
         }
     }
-
-    onMounted(()=>{
-        //router.push('/');
-    });
 
 </script>
 
 <template>
+
     <nav class="fixed flex flex-col ml-1 w-20 z-40">
         <button @click="toggle" class="bg-light-blue rounded-full mt-2">
             <Transition name="toggle-icon" mode="out-in">
@@ -73,28 +71,24 @@
             </RouterLink>
         </Transition>
         <Transition name="slide-fade-login">
-            <button v-if="!collapsed && !loggedIn" @click="enableModal" class="nav-button">
+            <button v-if="(!collapsed && !session)" @click="enableModal" class="nav-button">
                 <v-icon name="co-arrow-thick-to-right" scale="2"></v-icon>
             </button>
-        </Transition>
-        <Transition name="slide-fade-login">
-            <RouterLink v-if="!collapsed && loggedIn" to="/auth" class="nav-button">
+            <button v-else-if="(!collapsed)" @click="logout" class="nav-button">
                 <v-icon name="co-arrow-thick-from-right" scale="2"></v-icon>
-            </RouterLink>
+            </button>
         </Transition>
+        
     </nav>
 
 
     <div v-if="authActive" id="auth-modal" class=" modal flex absolute top-0 left-0 w-screen h-screen bg-transparent items-center justify-center z-50">
         <Auth/>
     </div>
+
 </template>
 
 <style scoped>
-
-    /* .modal{
-        display: none;
-    } */
     
     .slide-fade-home-enter-active,
     .slide-fade-home-leave-active{
