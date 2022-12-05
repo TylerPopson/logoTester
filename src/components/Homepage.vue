@@ -68,7 +68,7 @@
 </script>
 <template>
     
-    <div id="home" class="absolute w-screen h-screen overflow-hidden bg-tan bg-no-repeat bg-center ">
+    <div id="home" class="absolute w-screen h-[100dvh] overflow-hidden bg-tan bg-no-repeat bg-center ">
         <div id="topLeft" class="absolute bg-vie-logo bg-no-repeat bg-center bg-fixed bg-contain w-1/2 h-1/2 top-0 left-0"></div>
         <div id="bottomRight" class="absolute bg-vie-logo bg-no-repeat bg-center bg-fixed bg-contain grayscale w-1/2 h-1/2 bottom-0 right-0"></div>
         <div id="bottomLeft" class="absolute bg-vie-logo bg-no-repeat bg-center bg-fixed bg-contain invert w-1/2 h-1/2 bottom-0 left-0"></div>
