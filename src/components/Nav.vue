@@ -18,8 +18,10 @@
     let modal = document.getElementById("auth-modal");
 
     function enableModal(){
-        authActive.value = !authActive.value;
-        toggle();
+        if (router.currentRoute.value.path != "/auth") {
+            authActive.value = !authActive.value;
+            toggle();
+        }
     }
 
     window.onclick= (event)=>{

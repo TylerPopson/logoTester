@@ -39,7 +39,7 @@
 
 <template>
     <form class="flex flex-col gap-5 bg-light-pink rounded-b-md drop-shadow-xl h-full w-full justify-center items-center" @submit.prevent="handleLogin">
-        <input class="text-3xl py-5 w-5/6 appearance-none focus:outline-none border-b-2 border-purple-700 bg-[#FFFFFF66]" type="email" placeholder="Email" v-model="email" />
+        <input autofocus class="text-3xl py-5 w-5/6 appearance-none focus:outline-none border-b-2 border-purple-700 bg-[#FFFFFF66]" type="email" placeholder="Email" v-model="email" />
         <input class="text-3xl py-5 w-5/6 appearance-none focus:outline-none border-b-2 border-purple-700 bg-[#FFFFFF66]" type="password" placeholder="Password" v-model="password" />
         <div class="flex items-center justify-center w-full">
           <input
