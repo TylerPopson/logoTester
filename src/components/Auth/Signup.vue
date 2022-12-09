@@ -15,6 +15,12 @@
         const { data, error } = await supabase.auth.signUp({
             email: email.value,
             password: password.value,
+            options: {
+                data: {
+                    username: 'Light',
+                    full_name: 'Tyler Popson',
+                }
+            }
         })
 
         if (error) throw error

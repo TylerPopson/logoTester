@@ -56,7 +56,7 @@
 <template>
 
     <nav class="fixed flex flex-col ml-1 w-20 z-40">
-        <button @click="toggle" class="bg-light-blue rounded-full mt-2">
+        <button @click="toggle" class="bg-emerald-700 aspect-square rounded-full mt-2">
             <Transition name="toggle-icon" mode="out-in">
                     <component :is="Icon"></component>
             </Transition>
