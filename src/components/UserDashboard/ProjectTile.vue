@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { describe } from 'node:test';
 import type { title } from 'process';
 
     const props = defineProps([
