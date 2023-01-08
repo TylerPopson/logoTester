@@ -33,6 +33,41 @@ const router = createRouter({
 				needsAuth: false as boolean,
 			},
 		},
+		{
+			path: "/u/:id",
+			component: HomeView,
+			meta: {
+				needsAuth: false as boolean,
+			},
+		},
+		{
+			path: "/new",
+			component: HomeView,
+			meta: {
+				needsAuth: false as boolean,
+			},
+		},
+		{
+			path: "/p/:id",
+			component: HomeView,
+			meta: {
+				needsAuth: false as boolean,
+			},
+		},
+		{
+			path: "/faq",
+			component: HomeView,
+			meta: {
+				needsAuth: false as boolean,
+			},
+		},
+		{
+			path: "/404",
+			component: HomeView,
+			meta: {
+				needsAuth: false as boolean,
+			},
+		},
 	]
 });
 
