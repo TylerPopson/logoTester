@@ -15,8 +15,11 @@ const avatar_url = ref("");
 const full_name = ref("");
 const bio = ref("");
 
+const projects = ref();
+
 onMounted(() => {
-	 getProfile()
+	 getProfile();
+	 getProjects();
 });
 
 async function getProfile() {
@@ -38,14 +41,34 @@ async function getProfile() {
 			avatar_url.value = data.avatar_url;
 			full_name.value = data.full_name;
 			bio.value = data.bio;
-
-			console.log(username.value);
 		}
 	} catch (error) {
 		if(error instanceof Error)
 			alert(error.message);
 	} finally {
 		loading.value = false;
+	}
+}
+
+async function getProjects(){
+	try{
+		const { user } = session?.value;
+		let { data, error, status } = await supabase
+		.from("projects")
+		.select("id, title, description")
+		.eq("user_id", user.id);
+
+		if(error && status !== 406) throw error;
+		if (data) {
+			projects.value = data;
+			console.log(data);
+		}
+
+	}catch (error) {
+		if(error instanceof Error)
+			alert(error.message);
+	}finally {
+
 	}
 }
 </script>
@@ -77,7 +100,6 @@ async function getProfile() {
 				<ProjectTile title="Title 2" description="this is the description for 2"/>
 				<ProjectTile title="Title 3" description="this is the description for 3"/>
 				<ProjectTile title="Title 4" description="this is the description for 4"/>
-
 			</div>
 		</div>
         
