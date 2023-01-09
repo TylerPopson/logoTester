@@ -4,6 +4,7 @@ import { onMounted, ref } from "vue";
 import { storeToRefs } from "pinia";
 import { userSessionStore } from "@/store/userSession";
 import ProjectTile from './ProjectTile.vue';
+import NewProject from './NewProject.vue';
 
 const sessionStore = userSessionStore();
 const { session } = storeToRefs(sessionStore);
@@ -55,8 +56,8 @@ async function getProjects(){
 		const { user } = session?.value;
 		let { data, error, status } = await supabase
 		.from("projects")
-		.select("id, title, description")
-		.eq("user_id", user.id);
+		.select("*");
+		// .eq("user_id", user.id);
 
 		if(error && status !== 406) throw error;
 		if (data) {
@@ -95,11 +96,9 @@ async function getProjects(){
 				<input class="flex appearance-none border-b-2 bg-transparent border-b-emerald-500 w-10/12 h-10 outline-none" type="search" name="project-search" id="project-search" placeholder="Search">
 				<button class="border-b-2 border-b-emerald-500 px-4 outline-none">sort</button>
 			</div>
-			<div class="grid grid-cols-1 md:grid-cols-2 items-start justify-start w-full h-full bg-emerald-100 p-5 gap-5">
+			<div class="grid grid-cols-1 md:grid-cols-2 items-start justify-start w-full bg-emerald-100 p-5 gap-5">
 				<ProjectTile title="Title 1" description="this is the description for 1"/>
-				<ProjectTile title="Title 2" description="this is the description for 2"/>
-				<ProjectTile title="Title 3" description="this is the description for 3"/>
-				<ProjectTile title="Title 4" description="this is the description for 4"/>
+				<NewProject/>
 			</div>
 		</div>
         
