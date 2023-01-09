@@ -52,7 +52,7 @@ async function getProfile() {
 
 <template>
     <div class="flex w-screen h-[100dvh] items-center justify-center bg-emerald-100">
-		<div class="flex flex-col items-center w-1/4 h-full bg-emerald-200 p-9 gap-5">
+		<div class="flex flex-col w-1/4 h-full bg-emerald-200 p-9 gap-5">
 			<div class="w-full">
 				<img class="aspect-square w-full rounded-full" src="https://via.placeholder.com/150" alt="profile photo"/>
 			</div>
@@ -72,7 +72,7 @@ async function getProfile() {
 				<input class="flex appearance-none border-b-2 bg-transparent border-b-emerald-500 w-10/12 h-10 outline-none" type="search" name="project-search" id="project-search" placeholder="Search">
 				<button class="border-b-2 border-b-emerald-500 px-4 outline-none">sort</button>
 			</div>
-			<div class="grid grid-cols-2 items-start justify-start w-full h-full bg-emerald-100 p-5 gap-5">
+			<div class="grid grid-cols-1 md:grid-cols-2 items-start justify-start w-full h-full bg-emerald-100 p-5 gap-5">
 				<ProjectTile title="Title 1" description="this is the description for 1"/>
 				<ProjectTile title="Title 2" description="this is the description for 2"/>
 				<ProjectTile title="Title 3" description="this is the description for 3"/>
