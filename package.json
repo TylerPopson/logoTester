@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.1.0",
+    "@vueuse/core": "^9.10.0",
     "oh-vue-icons": "^1.0.0-rc3",
     "pinia": "^2.0.23",
     "vue": "^3.2.41",

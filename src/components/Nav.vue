@@ -83,7 +83,6 @@
         
     </nav>
 
-
     <div v-if="authActive" id="auth-modal" class=" modal flex absolute top-0 left-0 w-screen h-screen bg-transparent items-center justify-center z-50">
         <Auth/>
     </div>

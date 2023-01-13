@@ -38,13 +38,13 @@
 </script>
 
 <template>
-    <form class="flex flex-col gap-5 bg-light-pink rounded-b-md drop-shadow-xl h-full w-full justify-center items-center" @submit.prevent="handleLogin">
+    <form class="flex flex-col gap-5 bg-emerald-200 rounded-b-md drop-shadow-xl h-full w-full justify-center items-center" @submit.prevent="handleLogin">
         <input autofocus class="text-3xl py-5 w-5/6 appearance-none focus:outline-none border-b-2 border-purple-700 bg-[#FFFFFF66]" type="email" placeholder="Email" v-model="email" />
         <input class="text-3xl py-5 w-5/6 appearance-none focus:outline-none border-b-2 border-purple-700 bg-[#FFFFFF66]" type="password" placeholder="Password" v-model="password" />
         <div class="flex items-center justify-center w-full">
           <input
             type="submit"
-            class="block bg-purple rounded-md text-white p-2 w-5/6 text-lg"
+            class="block bg-emerald-600 rounded-md text-white p-2 w-5/6 text-lg"
             :value="loading ? 'Loading' : 'Login'"
             :disabled="loading"
           />
